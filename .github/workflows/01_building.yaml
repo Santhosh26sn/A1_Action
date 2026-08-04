@@ -1,0 +1,17 @@
+name: echo
+on: push
+jobs:
+  build1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: hello
+        run: echo "Hello here"
+  build2:
+    runs-on: ubuntu-latest
+    steps:
+      - name: bye
+        run: echo "Bye here"   
+      - name: fail step
+        run: |
+          exit 1
+          echo "This is the End.."
