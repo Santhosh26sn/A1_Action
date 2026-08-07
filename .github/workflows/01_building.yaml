@@ -12,9 +12,9 @@ jobs:
     steps:
       - name: bye
         run: echo "Bye here"   
-      - name: fail step
+      - name: success step
         run: |
-          exit 1
+          exit 0
           echo "This is the End.."
   echo:
     needs: build2
