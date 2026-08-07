@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: hello
-        run: echo "Hello here"
+        run: echo "Hello heree"
   build2:
     needs: build1
     runs-on: ubuntu-latest
