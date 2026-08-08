@@ -6,9 +6,13 @@ on:
       debug:
         type: boolean
         default: false
+env:
+  flow_run: 'workflow'        
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      flow_run: 'job'
     steps:                
       - name: Display all
         run: |
@@ -20,5 +24,16 @@ jobs:
           echo "Run ID : ${{ github.run_id}}"
           echo "Run num : ${{ github.run_number}}" 
       - name: variable
+        env:
+          flow_run: 'step'
         run: |
           echo "variable value: ${{vars.MY_VAR}}"
+          echo " env: ${{ env.flow_run}}"
+      - run: |
+          echo "env: ${{ env.flow_run}}"
+  build2:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print
+        run: |
+          echo "env: ${{ env.flow_run}}"
