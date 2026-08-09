@@ -1,5 +1,5 @@
 name: Display Information
-run-name: Run Details | ${{inputs.debug}}
+run-name: Run Details | ${{inputs.debug && 'ON' || 'OFF'}}
 on:
   workflow_dispatch:
     inputs:
@@ -9,7 +9,28 @@ on:
 env:
   flow_run: 'workflow'        
 jobs:
-  build:
+  app1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: '[Debug] Print start up data'
+        if: ${{ inputs.debug }}
+        run: |
+          echo " Trigger by ${{ github.event_name}} event" 
+          echo "Branch : ${{ github.ref}}"
+          echo "Actor : ${{ github.actor}}"
+          echo "OS: ${{ runner.os}}"
+  app2:
+    runs-on: ubuntu-latest
+    steps:    
+      - name: '[Debug] print from main'
+        if: ${{ inputs.debug && github.ref == 'refs/heads/main' }}
+        run: |
+          echo "This is main branch"
+      - name: 'Print Hello'
+        run: |
+          echo "Hello world"
+  build1:
+    needs: app2
     runs-on: ubuntu-latest
     env:
       flow_run: 'job'
@@ -32,6 +53,7 @@ jobs:
       - run: |
           echo "env: ${{ env.flow_run}}"
   build2:
+    needs: build1
     runs-on: ubuntu-latest
     steps:
       - name: Print
