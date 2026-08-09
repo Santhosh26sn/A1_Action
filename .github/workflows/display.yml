@@ -26,9 +26,6 @@ jobs:
         if: ${{ inputs.debug && github.ref == 'refs/heads/main' }}
         run: |
           echo "This is main branch"
-      - name: 'Print Hello'
-        run: |
-          echo "Hello world"
   build1:
     needs: app2
     runs-on: ubuntu-latest
