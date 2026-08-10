@@ -1,0 +1,20 @@
+name: demo app
+run-name: Update ci.yml
+on:
+  push:
+    branches:
+      - feature/**
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: Branch to Run
+        required: true
+        default: main
+        type: string
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print
+        run: |
+          echo "This is a demo apps"   
