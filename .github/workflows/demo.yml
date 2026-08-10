@@ -1,6 +1,9 @@
 name: demo app
 run-name: Update ci.yml
 on:
+  push:
+    branches:
+      - feature/**
   workflow_dispatch:
     inputs:
       branch:
