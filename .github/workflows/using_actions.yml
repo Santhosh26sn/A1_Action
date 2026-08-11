@@ -1,9 +1,9 @@
-name: CICD
+name: React CI
 on: 
   workflow_dispatch:    
-#  push:
-#    branches:
-#     - main
+  push:
+    branches:
+     - main
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -21,3 +21,5 @@ jobs:
         run: npm ci
       - name: run test
         run: npm test                 
+      - name: Build React app
+        run: npm run build  
