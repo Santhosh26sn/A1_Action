@@ -23,7 +23,7 @@ jobs:
       - name: Build React app
         run: npm run build
   test:
-    needs: build
+    needs: builds
     runs-on: ubuntu-latest
     defaults:
       run:
