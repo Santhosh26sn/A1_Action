@@ -2,9 +2,9 @@ name: React CI/CD Level 2
 run-name: React app
 on: 
   workflow_dispatch:    
-  push:
-    branches:
-     - main
+#  push:
+#    branches:
+#     - main
 jobs:
   build:
     runs-on: ubuntu-latest
