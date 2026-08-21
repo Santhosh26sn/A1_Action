@@ -1,13 +1,13 @@
 name: echo
 on:
-# push:
-#    branches:
-#      - main
+ push:
+   branches:
+    - main
 # workflow_dispatch:
-  pull_request:
-    types: [closed]
-    branches:
-      - main    
+#  pull_request:
+#    types: [closed]
+#    branches:
+#      - main    
 jobs:
   build1:
     runs-on: ubuntu-latest
@@ -22,8 +22,15 @@ jobs:
         run: echo "Bye here"   
       - name: success step
         run: |
-          exit 0
+          exit 1
           echo "This is the End.."
+      - name: display
+        run: |
+          echo "This is  ${{ github.ref}}"
+          echo "This is  ${{ github.sha}}"
+      - name: display 2    
+        run: |
+          echo "Author: ${{ github.actor}}"
   echo:
     needs: build2
     runs-on: ubuntu-latest
