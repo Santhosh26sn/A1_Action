@@ -1,4 +1,4 @@
-name: Funstion CICD
+name: Function CICD
 on:
   workflow_dispatch:
 jobs:
@@ -6,22 +6,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:    
       - name: sleep
-        run: sleep 10
-        if: ${{ success()}}
+        run: sleep 10        
       - name: sucess step
+        if: ${{ success()}}
         run: echo "Sucess step"
       - name: fail test
-        run: exit 1
-        if: ${{ failure()}}        
+        run: exit 1                
       - name: fail step
-        run: echo "This is fail step"
-        if: ${{ success()}}
+        if: ${{ failure()}}
+        run: echo "This is fail step"        
       - name: sucess step
-        run: echo "Sucess step"
-        if: ${{ !cancelled() }}
+        if: ${{ success()}}
+        run: echo "Sucess step"        
       - name: execute step
-        run: echo "Run if not cancel, check test step if failed"
-        if: ${{ cancelled() }}
+        if: ${{ !cancelled() }}
+        run: echo "Run if not cancel, check test step if failed"        
       - name: cancel step  
+        if: ${{ cancelled() }}
         run: echo "This is cancel step"
           
