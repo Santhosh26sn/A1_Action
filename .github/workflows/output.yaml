@@ -1,0 +1,30 @@
+name: output CICD
+on:
+  workflow_dispatch:
+    inputs:
+      build-status:
+        type: choice
+        options:
+          - success
+          - failure
+        default: success
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      display: ${{ steps.build.outputs.build-status}}
+    steps:
+      - name: print
+        run: echo "$GITHUB_OUTPUT"
+      - name: set output
+        id: build
+        run: echo "build-status=${{ inputs.build-status}}" >> $GITHUB_OUTPUT
+  display:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: display
+        run: echo "Build status is ${{ needs.build.outputs.display}}"
+
+
+    
