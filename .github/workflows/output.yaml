@@ -22,6 +22,7 @@ jobs:
   display:
     needs: build
     runs-on: ubuntu-latest
+    if: ${{ needs.build.outputs.display == 'success'}}
     steps:
       - name: display
         run: echo "Build status is ${{ needs.build.outputs.display}}"
