@@ -1,0 +1,33 @@
+name: Input CICD
+on:
+  workflow_dispatch:
+    inputs:
+      deploy:
+        type: boolean
+        description: skip deployment print only build
+        default: false
+      value:
+        type: environment
+        description: target environment for deployment
+        required: true
+      version:
+        type: choice
+        description: tag for deployment
+        options:
+          - v1
+          - v2
+          - v3
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: build version
+        run: echo "build tag is ${{ inputs.version}}"
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    if: ${{ !inputs.deploy }}
+    environment: ${{ inputs.value }}
+    steps:
+      - name: deploy
+        run: echo "deploy is ${{ inputs.value}} env"
