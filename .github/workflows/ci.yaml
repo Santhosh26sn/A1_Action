@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       result: ${{ steps.set-output.outputs.status}}
-      output_1: ${{ steps.set-output.outputs.Test123}}
+      output_1: ${{ steps.set-output.outputs.Test}}
     steps:
       - name: path
         run: echo "$GITHUB_OUTPUT"
@@ -24,8 +24,8 @@ jobs:
         id: set-output
         run: |
           echo "status=${{ inputs.status}}" >> $GITHUB_OUTPUT  
-          echo "Test123: value_1" >> $GITHUB_OUTPUT
-          echo "Test12: value_2" >> $GITHUB_OUTPUT
+          echo "Test: value_1" >> $GITHUB_OUTPUT
+          echo "demo: value_2" >> $GITHUB_OUTPUT
           cat $GITHUB_OUTPUT
   
   build:
@@ -37,4 +37,4 @@ jobs:
         run: |
           echo "Build status is ${{ needs.display.outputs.result}}"
           echo "Deployed successfully"
-          echo "Test123 is ${{ needs.display.outputs.output_1}}"
+          echo "Test is ${{ needs.display.outputs.output_1}}"
