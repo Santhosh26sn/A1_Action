@@ -24,6 +24,8 @@ jobs:
           echo "Test=value_1" >> $GITHUB_OUTPUT
           echo "demo=value_2" >> $GITHUB_OUTPUT
           cat $GITHUB_OUTPUT
+          echo "output_3=value_3" > $GITHUB_OUTPUT
+          cat $GITHUB_OUTPUT
   
   build:
     needs: display
