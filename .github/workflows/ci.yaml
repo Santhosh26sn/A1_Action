@@ -1,5 +1,8 @@
 name: Output CICD
 on:
+  push:
+    branches:
+      - main
   workflow_dispatch:
     inputs:
       status:
@@ -13,12 +16,17 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       result: ${{ steps.set-output.outputs.status}}
+      output_1: ${{ steps.set-output.outputs.Test123}}
     steps:
       - name: path
         run: echo "$GITHUB_OUTPUT"
       - name: Set output
         id: set-output
-        run: echo "status=${{ inputs.status}}" >> $GITHUB_OUTPUT  
+        run: |
+          echo "status=${{ inputs.status}}" >> $GITHUB_OUTPUT  
+          echo "Test123: value_1" >> $GITHUB_OUTPUT
+          echo "Test12: value_2" >> $GITHUB_OUTPUT
+          cat $GITHUB_OUTPUT
   
   build:
     needs: display
@@ -29,3 +37,4 @@ jobs:
         run: |
           echo "Build status is ${{ needs.display.outputs.result}}"
           echo "Deployed successfully"
+          echo "Test123 is ${{ needs.display.outputs.output_1}}"
