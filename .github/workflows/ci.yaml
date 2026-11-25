@@ -24,8 +24,8 @@ jobs:
         id: set-output
         run: |
           echo "status=${{ inputs.status}}" >> $GITHUB_OUTPUT  
-          echo "Test: value_1" >> $GITHUB_OUTPUT
-          echo "demo: value_2" >> $GITHUB_OUTPUT
+          echo "Test=value_1" >> $GITHUB_OUTPUT
+          echo "demo=value_2" >> $GITHUB_OUTPUT
           cat $GITHUB_OUTPUT
   
   build:
